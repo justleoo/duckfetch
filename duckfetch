@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+# colors
+
+GREEN="\x1B[32m"
+YELLOW="\x1B[33m"
+BLUE="\x1B[34m"
+CYAN="\x1B[36m"
+RED="\x1B[31m"
+WHITE="\x1B[37m"
+
+displayInfo() {
+    d_title=$USER@$HOSTNAME
+    d_user=$(whoami)
+    d_os=$(grep -m1 "NAME=" < /etc/os-release | cut -d '"' -f 2)
+    d_kernelName=$(cat /proc/sys/kernel/ostype)
+    d_kernelVersion=$(cat /proc/sys/kernel/osrelease)
+    d_uptime=$(uptime)
+    d_font=$(fc-match | sed 's/\..*//g')
+    d_shell=$(basename $SHELL)
+}
+
+setInfo() {
+displayInfo
+    cat <<EOF
+            ━━━━━━━━━━━━
+    $d_title
+    user: $d_user
+    os: $d_os
+    shell: $d_shell
+    ━━━━━━━━━━━━
+EOF
+}
+
+duck="
+     ,~~.
+\   (  - )>
+ )~~    (
+(  .__)   )
+ ~-_____.)
+
+"
+
+case "$(echo $d)" in
+
+    *) ascii="$duck" ;;
+
+esac
+
+if [[ "$1" ]]; then
+    while [[ "$1" ]]; do
+        case "$1" in
+        
+            -h|--help) echo "hi" && exit 0 ;;
+            -v|--version) echo Version 1.0 && exit 0 ;;
+            *) echo "[!] Invalid option! Use --help" && exit 1 ;;
+            
+        esac
+        shift
+    done
+else
+    paste <(printf "%s" "$ascii") <(printf "%s" "$(setInfo)") | cat
+fi
+exit 0
+setInfo
