@@ -17,4 +17,4 @@ chmod +x ./duckfetch
 
 done!
 
-quac
+quack
