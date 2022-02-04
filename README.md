@@ -6,17 +6,15 @@
 the project is a WIP, if you contribute i will be happy c:
 
 ### how to use
-
-with git
-
-```bash
-git clone https://github.com/justleoo/duckfetch
-chmod +x ./duckfetch
-./duckfetch
+  
 ```
-
-with install file [here](https://github.com/justleoo/duckfetch/blob/main/install)
-
+git clone https://github.com/justleoo/duckfetch
+cd duckfetch
+chmod +x ./install
+./install
+duckfetch
+```
+  
 done!
 
 ### showcase (by [angelofallars](https://github.com/angelofallars))
