@@ -26,12 +26,12 @@ displayInfo() {
 setInfo() {
 displayInfo
     cat <<EOF
-            
+            ${BLUE}━━━━━━━━━━━━${RESET}
     ${BOLD}${YELLOW_BRIGHT}$d_title${RESET}
     ${BOLD}${YELLOW_BRIGHT}user:${RESET} $d_user
     ${BOLD}${YELLOW_BRIGHT}os:${RESET} $d_os
     ${BOLD}${YELLOW_BRIGHT}shell:${RESET} $d_shell
-    
+    ${BLUE}━━━━━━━━━━━━${RESET}
 EOF
 }
 
@@ -41,25 +41,28 @@ $YELLOW_BRIGHT\   (  $RESET- $YELLOW_BRIGHT)$YELLOW>$RESET
 $YELLOW_BRIGHT)~~    (   $RESET
 $YELLOW_BRIGHT(  .__)   )$RESET
 $YELLOW_BRIGHT ~-_____.) $RESET
+
 "
 
 case "$(echo $d)" in
+
     *) ascii="$duck" ;;
+
 esac
 
 if [[ "$1" ]]; then
     while [[ "$1" ]]; do
         case "$1" in
-            -h|--help) echo "Should we have something here?" && exit 0 ;;
-            -v|--version) echo duckfetch v1.1 && exit 0 ;;
-
-            *) echo "duckfetch: Invalid option" && exit 1 ;;
+        
+            -h|--help) echo "hi" && exit 0 ;;
+            -v|--version) echo Version 1.0 && exit 0 ;;
+            *) echo "[!] Invalid option! Use --help" && exit 1 ;;
+            
         esac
         shift
     done
 else
     paste <(printf "%b" "$ascii") <(printf "%b" "$(setInfo)") | cat
 fi
-
 exit 0
 setInfo
