@@ -1,4 +1,4 @@
-<center><h1>duckfetch<h1></center>
+<h1>duckfetch<h1>
 <hr>
 
 ## welcome to duckfetch! 🦆
