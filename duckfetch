@@ -26,12 +26,12 @@ displayInfo() {
 setInfo() {
 displayInfo
     cat <<EOF
-            ━━━━━━━━━━━━
-    ${BOLD}$d_title${RESET}
-    ${BOLD}user:${RESET} $d_user
-    ${BOLD}os:${RESET} $d_os
-    ${BOLD}shell:${RESET} $d_shell
-    ━━━━━━━━━━━━
+            ${BLUE}━━━━━━━━━━━━${RESET}
+    ${BOLD}${YELLOW_BRIGHT}$d_title${RESET}
+    ${BOLD}${YELLOW_BRIGHT}user:${RESET} $d_user
+    ${BOLD}${YELLOW_BRIGHT}os:${RESET} $d_os
+    ${BOLD}${YELLOW_BRIGHT}shell:${RESET} $d_shell
+    ${BLUE}━━━━━━━━━━━━${RESET}
 EOF
 }
 
