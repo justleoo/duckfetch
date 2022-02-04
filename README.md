@@ -5,7 +5,7 @@
 
 the project is a WIP, if you contribute i will be happy c:
 
-### how to use
+### install
   
 ```
 git clone https://github.com/justleoo/duckfetch
