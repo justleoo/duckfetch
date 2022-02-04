@@ -4,10 +4,13 @@
 
 GREEN="\x1B[32m"
 YELLOW="\x1B[33m"
+YELLOW_BRIGHT="\x1B[93m"
 BLUE="\x1B[34m"
 CYAN="\x1B[36m"
 RED="\x1B[31m"
 WHITE="\x1B[37m"
+BOLD="\x1B[1m"
+RESET="\x1B[0m"
 
 displayInfo() {
     d_title=$USER@$HOSTNAME
@@ -23,21 +26,21 @@ displayInfo() {
 setInfo() {
 displayInfo
     cat <<EOF
-            ━━━━━━━━━━━━
-    $d_title
-    user: $d_user
-    os: $d_os
-    shell: $d_shell
-    ━━━━━━━━━━━━
+            ${BLUE}━━━━━━━━━━━━${RESET}
+    ${BOLD}${YELLOW_BRIGHT}$d_title${RESET}
+    ${BOLD}${YELLOW_BRIGHT}user:${RESET} $d_user
+    ${BOLD}${YELLOW_BRIGHT}os:${RESET} $d_os
+    ${BOLD}${YELLOW_BRIGHT}shell:${RESET} $d_shell
+    ${BLUE}━━━━━━━━━━━━${RESET}
 EOF
 }
 
 duck="
-     ,~~.
-\   (  - )>
- )~~    (
-(  .__)   )
- ~-_____.)
+$YELLOW_BRIGHT     ,~~.  $RESET
+$YELLOW_BRIGHT\   (  $RESET- $YELLOW_BRIGHT)$YELLOW>$RESET
+$YELLOW_BRIGHT)~~    (   $RESET
+$YELLOW_BRIGHT(  .__)   )$RESET
+$YELLOW_BRIGHT ~-_____.) $RESET
 
 "
 
@@ -59,7 +62,7 @@ if [[ "$1" ]]; then
         shift
     done
 else
-    paste <(printf "%s" "$ascii") <(printf "%s" "$(setInfo)") | cat
+    paste <(printf "%b" "$ascii") <(printf "%b" "$(setInfo)") | cat
 fi
 exit 0
 setInfo
