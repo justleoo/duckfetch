@@ -7,13 +7,15 @@ the project is a WIP, if you contribute i will be happy c:
 
 ### how to use
 
-only with git clone at the moment (~~I don't know how to do it any other way.. that's why I accept contributions lol~~)
+with git
 
 ```bash
 git clone https://github.com/justleoo/duckfetch
 chmod +x ./duckfetch
 ./duckfetch
 ```
+
+with install file [here](https://github.com/justleoo/duckfetch/blob/main/install)
 
 done!
 
