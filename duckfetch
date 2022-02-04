@@ -16,9 +16,7 @@ displayInfo() {
     d_title=$USER@$HOSTNAME
     d_user=$(whoami)
     d_os=$(grep -m1 "NAME=" < /etc/os-release | cut -d '"' -f 2)
-    d_kernelName=$(cat /proc/sys/kernel/ostype)
-    d_kernelVersion=$(cat /proc/sys/kernel/osrelease)
-    d_uptime=$(uptime)
+    d_uptime=$(uptime -p)
     d_font=$(fc-match | sed 's/\..*//g')
     d_shell=$(basename $SHELL)
 }
@@ -31,7 +29,8 @@ displayInfo
     ${BOLD}${YELLOW_BRIGHT}user:${RESET} $d_user
     ${BOLD}${YELLOW_BRIGHT}os:${RESET} $d_os
     ${BOLD}${YELLOW_BRIGHT}shell:${RESET} $d_shell
-    ${BLUE}━━━━━━━━━━━━${RESET}
+    ${BOLD}${YELLOW_BRIGHT}font:${RESET} $d_font
+            ${BLUE}━━━━━━━━━━━━${RESET}
 EOF
 }
 
