@@ -2,14 +2,16 @@
 
 FILE="duckfetch"
 
-[ "$UID" -eq 0 ] || exec sudo bash "$0" "$@"
-
 if [[ ! -f "./$FILE" ]]; then
     echo "The 'duckfetch' script does not exist."
     exit
 fi
 
-sudo cp ./$FILE /usr/bin
+if [[ $(uname -o) == "Android" ]]; then
+	cp ./$FILE /data/data/com.termux/files/usr/bin
+else
+	sudo cp ./$FILE /usr/bin
+fi
 
 echo "Installation complete. Run the 'duckfetch' command."
 echo "If you have any issue, please report them in the issues tab."
