@@ -13,12 +13,21 @@ BOLD="\x1B[1m"
 RESET="\x1B[0m"
 
 displayInfo() {
-    d_title=$USER@$HOSTNAME
-    d_user=$(whoami)
-    d_os=$(grep -m1 "NAME=" < /etc/os-release | cut -d '"' -f 2)
-    d_uptime=$(uptime -p)
-    d_font=$(fc-match | sed 's/\..*//g')
-    d_shell=$(basename $SHELL)
+    if [[ $(uname -o) == "Android" ]]; then
+        d_user=$(whoami)
+        d_title=$d_user@$HOSTNAME
+        d_os="Android $(getprop ro.build.version.release)"
+        d_uptime=$(uptime -p)
+        d_font=""
+        d_shell=$(basename $SHELL)
+    else
+        d_title=$USER@$HOSTNAME
+        d_user=$(whoami)
+        d_os=$(grep -m1 "NAME=" < /etc/os-release | cut -d '"' -f 2)
+        d_uptime=$(uptime -p)
+        d_font=$(fc-match | sed 's/\..*//g')
+        d_shell=$(basename $SHELL)
+    fi
 }
 
 setInfo() {
