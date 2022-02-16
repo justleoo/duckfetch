@@ -14,31 +14,33 @@ RESET="\x1B[0m"
 
 displayInfo() {
     if [[ $(uname -o) == "Android" ]]; then
-        d_user=$(whoami)
-        d_title=$d_user@$HOSTNAME
-        d_os="Android $(getprop ro.build.version.release)"
-        d_uptime=$(uptime -p)
-        d_font=""
-        d_shell=$(basename $SHELL)
+        user=$(whoami)
+        title=$user@$HOSTNAME
+        os="Android $(getprop ro.build.version.release)"
+        uptime=$(uptime -p)
+        shell=$(basename $SHELL)
     else
-        d_title=$USER@$HOSTNAME
-        d_user=$(whoami)
-        d_os=$(grep -m1 "NAME=" < /etc/os-release | cut -d '"' -f 2)
-        d_uptime=$(uptime -p)
-        d_font=$(fc-match | sed 's/\..*//g')
-        d_shell=$(basename $SHELL)
+        title=$USER
+        hostname=$HOSTNAME
+        user=$(whoami)
+        os=$(grep -m1 "NAME=" < /etc/os-release | cut -d '"' -f 2)
+        uptime=$(uptime -p)
+        font=$(fc-match | sed 's/\..*//g')
+        shell=$(basename $SHELL)
+        wm=${WAYLAND_DISPLAY:-$(xprop -id "$(xprop -root _NET_SUPPORTING_WM_CHECK | cut -d' ' -f5)" _NET_WM_NAME | cut -d'"' -f2)}
     fi
 }
 
 setInfo() {
 displayInfo
     cat <<EOF
-            ${BOLD}${CYAN}$d_title${RESET}
+            ${BOLD}${CYAN}$title${RESET}${BOLD}${RED}@${BOLD}${GREEN}$hostname${RESET}
     ${BLUE}━━━━━━━━━━━━${RESET}
-    ${BOLD}${YELLOW_BRIGHT}user:${RESET} $d_user
-    ${BOLD}${YELLOW_BRIGHT}os:${RESET} $d_os
-    ${BOLD}${YELLOW_BRIGHT}shell:${RESET} $d_shell
-    ${BOLD}${YELLOW_BRIGHT}font:${RESET} $d_font
+    ${BOLD}${YELLOW_BRIGHT} ${RESET} $user
+    ${BOLD}${YELLOW_BRIGHT} ${RESET} $os
+    ${BOLD}${YELLOW_BRIGHT} ${RESET} $shell
+    ${BOLD}${YELLOW_BRIGHT}❆${RESET} $font
+            ${BOLD}${YELLOW_BRIGHT} ${RESET} $wm
             ${BLUE}━━━━━━━━━━━━${RESET}
 EOF
 }
@@ -74,3 +76,4 @@ else
 fi
 exit 0
 setInfo
+
