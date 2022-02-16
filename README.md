@@ -17,9 +17,9 @@ duckfetch
   
 done!
 
-### showcase (by [angelofallars](https://github.com/angelofallars))
+### showcase
 
-<img src="https://user-images.githubusercontent.com/39676098/152470945-01d0cf4f-16a2-4240-a3e9-facd144220d5.png">
+<img src="duckfetch.png">
 
 ### on android (termux) by [Guaxinim5573](https://github.com/Guaxinim5573)
 
