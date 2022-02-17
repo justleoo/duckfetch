@@ -5,7 +5,7 @@
 
 the project is a WIP, if you contribute i will be happy c:
 
-### install
+### installation ✏
   
 ```
 git clone https://github.com/justleoo/duckfetch
@@ -15,9 +15,9 @@ chmod +x ./install
 duckfetch
 ```
   
-done!
+done! use `duckfetch` command.
 
-### showcase
+### showcase 
 
 <img src="duckfetch.png">
 
