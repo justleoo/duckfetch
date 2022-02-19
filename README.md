@@ -19,7 +19,7 @@ done! use `duckfetch` command.
 
 ### showcase 
 
-<img src="duckfetch.png"> 
+<img src="example.png"> 
 
 ### on android (termux) by [Guaxinim5573](https://github.com/Guaxinim5573)
 
