@@ -6,8 +6,8 @@ GREEN="\x1B[32m"
 YELLOW="\x1B[33m"
 YELLOW_BRIGHT="\x1B[93m"
 BLUE="\x1B[34m"
-CYAN="\x1B[36m"
-RED="\x1B[31m"
+CYAN="\033[36m"
+RED="\033[1;31m"
 WHITE="\x1B[37m"
 BOLD="\x1B[1m"
 RESET="\x1B[0m"
@@ -17,16 +17,17 @@ displayInfo() {
         user=$(whoami)
         title=$user@$HOSTNAME
         os="Android $(getprop ro.build.version.release)"
-        uptime=$(uptime -p)
+        uptime=$(uptime -p | sed 's/up//')
         shell=$(basename $SHELL)
     else
         title=$USER
         hostname=$HOSTNAME
         user=$(whoami)
         os=$(grep -m1 "NAME=" < /etc/os-release | cut -d '"' -f 2)
-        uptime=$(uptime -p)
+        uptime=$(uptime -p | sed 's/up//')
         font=$(fc-match | sed 's/\..*//g')
         shell=$(basename $SHELL)
+        memory=$(free --mega | awk 'NR == 2 { print $3" / "$2" MB" }')
         wm=${WAYLAND_DISPLAY:-$(xprop -id "$(xprop -root _NET_SUPPORTING_WM_CHECK | cut -d' ' -f5)" _NET_WM_NAME | cut -d'"' -f2)}
     fi
 }
@@ -34,14 +35,15 @@ displayInfo() {
 setInfo() {
 displayInfo
     cat <<EOF
-            ${BOLD}${CYAN}$title${RESET}${BOLD}${RED}@${BOLD}${GREEN}$hostname${RESET}
-    ${BLUE}━━━━━━━━━━━━${RESET}
-    ${BOLD}${YELLOW_BRIGHT} ${RESET} $user
-    ${BOLD}${YELLOW_BRIGHT} ${RESET} $os
-    ${BOLD}${YELLOW_BRIGHT} ${RESET} $shell
-    ${BOLD}${YELLOW_BRIGHT}❆${RESET} $font
-            ${BOLD}${YELLOW_BRIGHT} ${RESET} $wm
-            ${BLUE}━━━━━━━━━━━━${RESET}
+            ${BOLD}${CYAN}$title${RESET}${BOLD}${RED}@${BOLD}${GREEN}$hostname${RESET} 
+    ${BOLD}${GREEN}user  ${RESET} $user
+    ${BOLD}${YELLOW_BRIGHT}OS    ${RESET} $os
+    ${BOLD}${RED}shell ${RESET} $shell
+    ${BOLD}${YELLOW}font  ${RESET} $font
+    ${BOLD}${BLUE}WM    ${RESET} $wm
+            ${BOLD}${CYAN}memory${RESET} $memory
+            ${BOLD}${WHITE}upt  ${RESET} $uptime
+            \n
 EOF
 }
 
@@ -76,4 +78,3 @@ else
 fi
 exit 0
 setInfo
-
