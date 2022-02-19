@@ -1,4 +1,7 @@
 <h1>duckfetch<h1>
+  
+  ### `duckfetch` is a minimalistic system fetch for the GNU/Linux and Android operating system.
+  
 <hr>
 
 ## welcome to duckfetch! 🦆
