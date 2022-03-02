@@ -22,7 +22,7 @@ done! use `duckfetch` command.
 
 ### showcase 
 
-<img src="example.png"> 
+<img src="duck.png"> 
 
 ### on android (termux) by [Guaxinim5573](https://github.com/Guaxinim5573)
 
