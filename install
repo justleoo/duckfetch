@@ -4,13 +4,16 @@ FILE="duckfetch"
 
 if [[ ! -f "./$FILE" ]]; then
     echo "The 'duckfetch' script does not exist."
-    exit
+    exit 1
 fi
 
 if [[ $(uname -o) == "Android" ]]; then
 	cp ./$FILE /data/data/com.termux/files/usr/bin
+elif [[ $(id -u) == 0 ]]; then
+	cp ./$FILE /usr/bin
 else
-	sudo cp ./$FILE /usr/bin
+	echo "You need to run this script as root."
+	exit 1
 fi
 
 echo "Installation complete. Run the 'duckfetch' command."

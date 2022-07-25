@@ -14,7 +14,7 @@ the project is a WIP, if you contribute i will be happy c:
 git clone https://github.com/justleoo/duckfetch
 cd duckfetch
 chmod +x ./install
-./install
+sudo ./install
 duckfetch
 ```
   
